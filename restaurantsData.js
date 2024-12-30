@@ -1,3 +1,5 @@
+// start of my code
+// Hardcoded restaurant data
 export const RESTAURANTS = [
   {
     title: "Joe's Gelato",
@@ -114,3 +116,4 @@ export const RESTAURANTS = [
     ],
   },
 ];
+//end of my code

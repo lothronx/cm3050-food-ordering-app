@@ -1,7 +1,26 @@
+// start of my code
+/**
+ * @fileoverview HomescreenCell component that renders an individual restaurant card
+ * in the main restaurant list. Each cell displays a restaurant's image, title,
+ * tagline, and estimated delivery time in an interactive card format.
+ */
+
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Cell } from "react-native-tableview-simple";
 
+/**
+ * HomescreenCell component renders a touchable restaurant card with image and details.
+ * When tapped, it navigates to the restaurant's menu screen.
+ * 
+ * @param {Object} props - Component props
+ * @param {string} props.title - Name of the restaurant
+ * @param {string} props.tagline - Short description or type of cuisine
+ * @param {string} props.eta - Estimated delivery time in minutes
+ * @param {Object} props.imgUri - Image source for the restaurant
+ * @param {Object} props.navigation - Navigation object for screen transitions
+ * @returns {React.ReactElement} A touchable cell displaying restaurant information
+ */
 export function HomescreenCell({ title, tagline, eta, imgUri, navigation }) {
   return (
     <Cell
@@ -13,13 +32,18 @@ export function HomescreenCell({ title, tagline, eta, imgUri, navigation }) {
             style={styles.touchable}
             activeOpacity={0.7}
             onPress={() => navigation.navigate("Menu", { restaurantName: title })}>
+            {/* Restaurant cover image */}
             <Image source={imgUri} resizeMode="cover" style={styles.image} />
+            
+            {/* Delivery time badge */}
             <View style={styles.etaContainer}>
               <Text style={styles.eta}>
                 {eta}
                 {"\n"}mins
               </Text>
             </View>
+            
+            {/* Restaurant information overlay */}
             <View style={styles.textContainer}>
               <Text style={styles.title}>{title}</Text>
               <Text style={styles.tagline}>{tagline}</Text>
@@ -31,6 +55,11 @@ export function HomescreenCell({ title, tagline, eta, imgUri, navigation }) {
   );
 }
 
+/**
+ * Styles for the HomescreenCell component.
+ * The layout uses absolute positioning for overlays and maintains
+ * consistent spacing and visual hierarchy.
+ */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -54,7 +83,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     padding: 10,
-    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    backgroundColor: "rgba(0, 0, 0, 0.6)", // Semi-transparent overlay for text readability
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
   },
@@ -71,7 +100,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 10,
     right: 10,
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    backgroundColor: "rgba(255, 255, 255, 0.9)", // Semi-transparent white background
     padding: 8,
     borderRadius: 8,
     alignItems: "center",
@@ -82,3 +111,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+// end of my code
